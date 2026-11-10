@@ -1,0 +1,17 @@
+
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    namespace 'com.quest.japanesekeyboard'
+    compileSdk 35
+
+    defaultConfig {
+        applicationId 'com.quest.japanesekeyboard'
+        minSdk 29
+        targetSdk 32
+        versionCode 1
+        versionName '1.0'
+    }
+}
