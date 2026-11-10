@@ -1,0 +1,44 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Quest日本語キーボード</title>
+<style>
+body{background:#15202b;color:white;font-family:sans-serif;text-align:center;padding:12px}
+textarea{width:95%;height:100px;font-size:22px;border-radius:10px;padding:8px;box-sizing:border-box}
+.keys{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-top:15px}
+button{font-size:22px;padding:13px 2px;border:0;border-radius:8px;background:#34495e;color:white}
+.action{background:#1677e8;margin-top:12px;width:95%}
+</style>
+</head>
+<body>
+<h2>Quest日本語キーボード</h2>
+<textarea id="message" placeholder="ここに日本語が表示されます"></textarea>
+<div class="keys" id="keys"></div>
+<button class="action" onclick="erase()">1文字削除</button>
+<button class="action" onclick="copyText()">文章をコピー</button>
+<p id="status"></p>
+<script>
+const chars="あいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよらりるれろわをんー。、！？";
+const area=document.getElementById("message");
+const keys=document.getElementById("keys");
+for(const char of chars){
+ const b=document.createElement("button");
+ b.textContent=char;
+ b.onclick=()=>{area.value+=char};
+ keys.appendChild(b);
+}
+function erase(){area.value=area.value.slice(0,-1)}
+async function copyText(){
+ try{
+  await navigator.clipboard.writeText(area.value);
+  document.getElementById("status").textContent="コピーしました";
+ }catch(e){
+  document.getElementById("status").textContent="コピーできませんでした";
+ }
+}
+</script>
+</body>
+</html>
